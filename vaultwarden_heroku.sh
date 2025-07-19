@@ -34,7 +34,7 @@ function heroku_bootstrap {
     CREATE_APP_NAME=$1
 
     echo "Logging into Heroku Container Registry to push the image (this will add an entry in your Docker config)"
-    heroku stack:set container
+    
     heroku container:login
 
     echo "We must create a Heroku application to deploy to first."
@@ -118,6 +118,8 @@ function build_image {
     echo "Now we will build the amd64 image to deploy to Heroku with the specified port changes"
     mv ./${VAULTWARDEN_FOLDER}/docker/Dockerfile.alpine ./${VAULTWARDEN_FOLDER}/Dockerfile
     cd ./${VAULTWARDEN_FOLDER}
+    
+    heroku stack:set container
     heroku container:push web -a "${APP_NAME}"
 
     echo "Now we can release the app which will publish it"
