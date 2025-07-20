@@ -119,7 +119,6 @@ function build_image {
     mv ./${VAULTWARDEN_FOLDER}/docker/Dockerfile.alpine ./${VAULTWARDEN_FOLDER}/Dockerfile
     cd ./${VAULTWARDEN_FOLDER}
     
-    heroku stack:set container
     heroku container:push web -a "${APP_NAME}"
 
     echo "Now we can release the app which will publish it"
